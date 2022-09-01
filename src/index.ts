@@ -2,6 +2,7 @@ import { Plugin, createServer } from 'vite'
 import path from 'path'
 import fs from 'fs'
 import { renderToString } from 'react-dom/server'
+import { debug } from 'debug'
 
 let content = `
 <!DOCTYPE html>
@@ -21,15 +22,20 @@ let content = `
 const docType = (content: string) => `<!DOCTYPE html>${content}`
 
 const VIRTUAL_HTML_ID = 'virtual-document.tsx'
+const NAME = 'vite-plugin-document'
+
+const log = {
+  watcher: debug(`${NAME}:watcher`),
+}
 
 export const VitePluginDocument = (): Plugin => {
   return {
-    name: 'vite-plugin-document',
+    name: NAME,
     configureServer(server) {
       server.watcher.add(path.resolve('./Document.tsx'))
       server.watcher.on('all', async (_, filename) => {
         if (filename.endsWith('Document.tsx')) {
-          console.log('change', filename)
+          log.watcher('%s changed full-reload', filename)
           const module = server.moduleGraph.getModuleById(VIRTUAL_HTML_ID)
           server.moduleGraph.invalidateModule(module!)
           if (server.ws) {
@@ -44,7 +50,6 @@ export const VitePluginDocument = (): Plugin => {
         server.middlewares.use(async (req, res, next) => {
           // if not html, next it.
           if (!req.originalUrl?.endsWith('.html') && req.originalUrl !== '/') {
-            console.log(req.originalUrl)
             return next()
           }
           const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
