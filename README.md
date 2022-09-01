@@ -23,6 +23,12 @@ export default defineConfig({
 })
 ```
 
+### options
+
+`documentFilepath` custom `Document.tsx` filepath, default is `root/src/Document.tsx`
+
+- type `string`
+
 ## development
 
 - **Setup** - `pnpm i`
