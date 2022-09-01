@@ -1,4 +1,4 @@
-# vite-plugin-document
+![vite-plugin-document](https://realme-ten.vercel.app/api/v1/banner?colorA=7c2d12&colorB=c2410c&textColor=fb923c&title=vite-plugin-document&subtitle=NEO&desc=Document.tsx%20as%20html%20template)
 
 [![npm](https://img.shields.io/npm/v/vite-plugin-document)](https://github.com/JiangWeixian/vite-plugin-document) [![GitHub](https://img.shields.io/npm/l/vite-plugin-document)](https://github.com/JiangWeixian/vite-plugin-document) 
 
