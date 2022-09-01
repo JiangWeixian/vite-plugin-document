@@ -10,6 +10,7 @@ importers:
       '@rollup/plugin-commonjs': 21.0.2
       '@rollup/plugin-node-resolve': 13.1.3
       '@types/node': 17.0.22
+      '@types/react-dom': ^18.0.6
       cz-emoji: 1.3.1
       eslint: 8.11.0
       esrua: 0.2.1
@@ -17,6 +18,7 @@ importers:
       husky: 7.0.4
       lint-staged: 11.2.6
       prettier: 2.4.1
+      react-dom: ^18.2.0
       rimraf: 3.0.2
       rollup: 2.71.1
       rollup-plugin-condition-exports: 1.3.1
@@ -28,6 +30,7 @@ importers:
       ttypescript: 1.5.13
       typescript: 4.4.3
       typescript-transform-paths: 3.3.1
+      vite: ^3.0.7
       vitest: 0.10.0
     dependencies:
       functional-md: 1.1.0
@@ -38,12 +41,14 @@ importers:
       '@rollup/plugin-commonjs': 21.0.2_rollup@2.71.1
       '@rollup/plugin-node-resolve': 13.1.3_rollup@2.71.1
       '@types/node': 17.0.22
+      '@types/react-dom': 18.0.6
       cz-emoji: 1.3.1
       eslint: 8.11.0
       esrua: 0.2.1
       husky: 7.0.4
       lint-staged: 11.2.6
       prettier: 2.4.1
+      react-dom: 18.2.0
       rimraf: 3.0.2
       rollup: 2.71.1
       rollup-plugin-condition-exports: 1.3.1
@@ -55,6 +60,7 @@ importers:
       ttypescript: 1.5.13_yxvs7vmpitgbgsgnvwdmn3sgyi
       typescript: 4.4.3
       typescript-transform-paths: 3.3.1_typescript@4.4.3
+      vite: 3.0.9
       vitest: 0.10.0
 
   playground:
@@ -4968,6 +4974,15 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /react-dom/18.2.0:
+    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      loose-envify: 1.4.0
+      scheduler: 0.23.0
+    dev: true
+
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -5306,7 +5321,6 @@ packages:
     resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
     dependencies:
       loose-envify: 1.4.0
-    dev: false
 
   /semver-compare/1.0.0:
     resolution: {integrity: sha1-De4hahyUGrN+nvsXiPavxf9VN/w=}
