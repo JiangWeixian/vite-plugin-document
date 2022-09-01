@@ -28,6 +28,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
+    "play": "pnpm --filter=./playground dev",
     "build": "rimraf dist && rollup -c --silent",
     "dev": "rollup -c -w --silent",
     "test": "vitest",

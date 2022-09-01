@@ -2,7 +2,7 @@ import { Plugin, createServer } from 'vite'
 import path from 'path'
 import fs from 'fs'
 import { renderToString } from 'react-dom/server'
-import { debug } from 'debug'
+import debug from 'debug'
 
 let content = `
 <!DOCTYPE html>
