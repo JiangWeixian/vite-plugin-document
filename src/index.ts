@@ -28,13 +28,26 @@ const log = {
   watcher: debug(`${NAME}:watcher`),
 }
 
-export const VitePluginDocument = (): Plugin => {
+type Options = {
+  documentFilePath?: string
+}
+
+export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plugin => {
+  const options: Required<Options> = {
+    documentFilePath,
+  }
   return {
     name: NAME,
+    configResolved(config) {
+      options.documentFilePath = path.resolve(config.root, 'src/Document.tsx')
+      if (!fs.existsSync(options.documentFilePath)) {
+        console.error(`Document.tsx at ${options.documentFilePath} not exit!`)
+      }
+    },
     configureServer(server) {
-      server.watcher.add(path.resolve('./Document.tsx'))
+      server.watcher.add(options.documentFilePath)
       server.watcher.on('all', async (_, filename) => {
-        if (filename.endsWith('Document.tsx')) {
+        if (filename === options.documentFilePath) {
           log.watcher('%s changed full-reload', filename)
           const module = server.moduleGraph.getModuleById(VIRTUAL_HTML_ID)
           server.moduleGraph.invalidateModule(module!)
@@ -70,9 +83,10 @@ export const VitePluginDocument = (): Plugin => {
     },
     async load(id) {
       if (id === VIRTUAL_HTML_ID) {
-        const content = fs.readFileSync(path.resolve('./Document.tsx')).toString('utf-8')
+        const content = fs.readFileSync(options.documentFilePath).toString('utf-8')
         return content
       }
+      // in build mode, vite will try to load `index.html`
       if (id.endsWith('.html')) {
         const server = await createServer({
           server: { middlewareMode: true },

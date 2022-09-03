@@ -1,22 +1,33 @@
-![vite-plugin-document](https://realme-ten.vercel.app/api/v1/banner?colorA=7c2d12&colorB=c2410c&textColor=fb923c&title=vite-plugin-document&subtitle=NEO&desc=build%20lib%20with%20condition%20exports)
+![vite-plugin-document](https://realme-ten.vercel.app/api/v1/banner?colorA=7c2d12&colorB=c2410c&textColor=fb923c&title=vite-plugin-document&subtitle=NEO&desc=Document.tsx%20as%20html%20template)
 
-[![npm](https://img.shields.io/npm/v/vite-plugin-document)](https://github.com/JiangWeixian/vite-plugin-document) [![GitHub](https://img.shields.io/npm/l/vite-plugin-document)](https://github.com/JiangWeixian/vite-plugin-document) [![stackblitz](https://img.shields.io/badge/%E2%9A%A1%EF%B8%8Fstackblitz-online-blue)](https://stackblitz.com/github/JiangWeixian/vite-plugin-document)
+[![npm](https://img.shields.io/npm/v/vite-plugin-document)](https://github.com/JiangWeixian/vite-plugin-document) [![GitHub](https://img.shields.io/npm/l/vite-plugin-document)](https://github.com/JiangWeixian/vite-plugin-document) 
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/github/JiangWeixian/vite-plugin-document)
-
-## features
-
-- 📊 Stats - output bag bundlesize
-- 📦 Exclude `dependencies` and `peerDependencies`, and bundle `devDependencies`
-- 💪 Typescript - type safe
-- 🃏 Auto setup package condition exports
-- ✅ Vitest
+*use `Document.tsx` as html template.*
 
 ## install
 
 ```console
 pnpm i vite-plugin-document
 ```
+
+## usage
+
+```tsx
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePluginDocument } from 'vite-plugin-document'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), VitePluginDocument()],
+})
+```
+
+### options
+
+`documentFilepath` custom `Document.tsx` filepath, default is `root/src/Document.tsx`
+
+- type `string`
 
 ## development
 
