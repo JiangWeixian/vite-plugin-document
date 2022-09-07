@@ -74,7 +74,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
     },
     resolveId(id) {
       if (id === VIRTUAL_HTML_ID) {
-        return VIRTUAL_HTML_ID
+        return options.documentFilePath
       }
       if (id.endsWith('.html')) {
         return id
@@ -82,10 +82,6 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
       return id
     },
     async load(id) {
-      if (id === VIRTUAL_HTML_ID) {
-        const content = fs.readFileSync(options.documentFilePath).toString('utf-8')
-        return content
-      }
       // in build mode, vite will try to load `index.html`
       if (id.endsWith('.html')) {
         const server = await createServer({
