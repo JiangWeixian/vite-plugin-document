@@ -1,7 +1,7 @@
 import { Plugin, createServer } from 'vite'
 import path from 'path'
 import fs from 'fs'
-import { renderToString } from 'react-dom/server'
+import { renderToStaticMarkup } from 'react-dom/server'
 import debug from 'debug'
 
 let content = `
@@ -50,7 +50,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
         if (filename === options.documentFilePath) {
           log.watcher('%s changed full-reload', filename)
           const module = server.moduleGraph.getModuleById(VIRTUAL_HTML_ID)
-          server.moduleGraph.invalidateModule(module!)
+          module && server.moduleGraph.invalidateModule(module!)
           if (server.ws) {
             server.ws.send({
               type: 'full-reload',
@@ -66,7 +66,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
             return next()
           }
           const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
-          content = docType(renderToString(doc()))
+          content = docType(renderToStaticMarkup(doc()))
           content = await server.transformIndexHtml?.(req.originalUrl!, content, req.originalUrl)
           res.end(content)
         })
@@ -88,7 +88,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
           server: { middlewareMode: true },
         })
         const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
-        content = docType(renderToString(doc()))
+        content = docType(renderToStaticMarkup(doc()))
         server.close()
         return content
       }
