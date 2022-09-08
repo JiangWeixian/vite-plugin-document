@@ -1,5 +1,12 @@
 # vite-plugin-document
 
+## 0.0.4
+
+### Patch Changes
+
+- ce219e6: custom document file path not working
+- ebde657: use renderToStaticMarkup prevent render html comment
+
 ## 0.0.3
 
 ### Patch Changes
