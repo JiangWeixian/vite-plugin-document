@@ -39,7 +39,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
   return {
     name: NAME,
     configResolved(config) {
-      options.documentFilePath = path.resolve(config.root, 'src/Document.tsx')
+      options.documentFilePath = documentFilePath || path.resolve(config.root, 'src/Document.tsx')
       if (!fs.existsSync(options.documentFilePath)) {
         console.error(`Document.tsx at ${options.documentFilePath} not exit!`)
       }
