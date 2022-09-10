@@ -1,5 +1,15 @@
 # vite-plugin-document
 
+## 0.1.0
+
+### Minor Changes
+
+- 9a496c9: force overwrite env.mode
+
+### Patch Changes
+
+- 9a496c9: custom document file path not working
+
 ## 0.0.4
 
 ### Patch Changes
