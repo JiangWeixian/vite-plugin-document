@@ -4,6 +4,9 @@
 
 *use `Document.tsx` as html template.*
 
+> **⚠️ WARNING**  
+`production` or `development` flag on `import.meta.env` is not correct. Please use `import.meta.env.MODE` instead. If have any advice, please visit [#10](https://github.com/JiangWeixian/vite-plugin-document/issues/10)
+
 ## install
 
 ```console

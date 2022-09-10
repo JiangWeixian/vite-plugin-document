@@ -86,6 +86,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
       if (id.endsWith('.html')) {
         const server = await createServer({
           server: { middlewareMode: true },
+          mode: 'production',
         })
         const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
         content = docType(renderToStaticMarkup(doc()))
