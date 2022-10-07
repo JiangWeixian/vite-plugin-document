@@ -60,11 +60,7 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
         }
       })
       return () => {
-        server.middlewares.use(async (req, res, next) => {
-          // if not html, next it.
-          if (!req.originalUrl?.endsWith('.html') && req.originalUrl !== '/') {
-            return next()
-          }
+        server.middlewares.use(async (req, res) => {
           const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
           content = docType(renderToStaticMarkup(doc()))
           content = await server.transformIndexHtml?.(req.originalUrl!, content, req.originalUrl)
