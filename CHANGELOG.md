@@ -1,5 +1,11 @@
 # vite-plugin-document
 
+## 0.1.1
+
+### Patch Changes
+
+- 13bff4c: transform html with react-router
+
 ## 0.1.0
 
 ### Minor Changes
