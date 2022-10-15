@@ -87,7 +87,11 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
         const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
         content = docType(renderToStaticMarkup(doc()))
         server.close()
-        return content
+        return {
+          code: content,
+          // https://rollupjs.org/guide/en/#source-code-transformations
+          map: null,
+        }
       }
       return null
     },
