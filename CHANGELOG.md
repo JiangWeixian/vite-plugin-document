@@ -1,5 +1,11 @@
 # vite-plugin-document
 
+## 0.1.2
+
+### Patch Changes
+
+- 2dfe190: remove sourcemap warnings
+
 ## 0.1.1
 
 ### Patch Changes
