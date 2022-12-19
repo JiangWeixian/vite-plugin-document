@@ -1,4 +1,5 @@
-import { Plugin, createServer } from 'vite'
+import { build as viteBuild } from 'vite'
+import type { Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
 import { renderToStaticMarkup } from 'react-dom/server'
@@ -30,16 +31,19 @@ const log = {
 
 type Options = {
   documentFilePath?: string
+  outDir?: string
 }
 
 export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plugin => {
   const options: Required<Options> = {
     documentFilePath,
+    outDir: '.vite-document',
   }
   return {
     name: NAME,
     configResolved(config) {
       options.documentFilePath = documentFilePath || path.resolve(config.root, 'src/Document.tsx')
+      options.outDir = path.resolve(config.root, options.outDir)
       if (!fs.existsSync(options.documentFilePath)) {
         console.error(`Document.tsx at ${options.documentFilePath} not exit!`)
       }
@@ -80,13 +84,16 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
     async load(id) {
       // in build mode, vite will try to load `index.html`
       if (id.endsWith('.html')) {
-        const server = await createServer({
-          server: { middlewareMode: true },
-          mode: 'production',
+        await viteBuild({
+          build: {
+            outDir: options.outDir,
+            ssr: options.documentFilePath,
+          },
         })
-        const doc = (await server.ssrLoadModule(VIRTUAL_HTML_ID)).default
+        const doc = await import(path.resolve(options.outDir, 'Document.js')).then(
+          (res) => res.default,
+        )
         content = docType(renderToStaticMarkup(doc()))
-        server.close()
         return {
           code: content,
           // https://rollupjs.org/guide/en/#source-code-transformations
