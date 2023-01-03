@@ -4,13 +4,10 @@
 
 *use `Document.tsx` as html template.*
 
-> **⚠️ WARNING**  
-`production` or `development` flag on `import.meta.env` is not correct. Please use `import.meta.env.MODE` instead. If have any advice, please visit [#10](https://github.com/JiangWeixian/vite-plugin-document/issues/10)
-
 ## install
 
 ```console
-pnpm i vite-plugin-document
+pnpm i vite-plugin-document -D
 ```
 
 ## usage
@@ -53,11 +50,21 @@ export default Document
 
 check [playground](/playground/) for more details
 
-### options
+## options
 
-`documentFilepath` custom `Document.tsx` filepath, default is `root/src/Document.tsx`
+### `documentFilepath` 
+
+Custom `Document.tsx` filepath
 
 - type `string`
+- default `<rootDir>/src/Document.tsx`
+
+### `outDir`
+
+In build mode, `vite-plugin-document` will bundle `<rootDir>/src/Document.tsx` into disk
+
+- type `string`
+- default `<rootDir>/.vite-document`
 
 ## development
 
