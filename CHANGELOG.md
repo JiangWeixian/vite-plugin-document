@@ -1,5 +1,11 @@
 # vite-plugin-document
 
+## 0.2.0
+
+### Minor Changes
+
+- 547393b: BREAKING CHANGE: bundle src/Document before render html content, env variables follow internal vite
+
 ## 0.1.2
 
 ### Patch Changes
