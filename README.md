@@ -50,6 +50,16 @@ export default Document
 
 check [playground](/playground/) for more details
 
+### inline scripts
+
+```tsx
+<script
+  dangerouslySetInnerHTML={{
+    __html: `mark('head')`,
+  }}
+/>
+```
+
 ## options
 
 ### `documentFilepath` 
