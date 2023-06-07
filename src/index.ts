@@ -3,6 +3,7 @@ import type { Plugin } from 'vite'
 import path from 'path'
 import fs from 'fs'
 import { renderToStaticMarkup } from 'react-dom/server'
+import { resolveDistDocumentPath } from './utils'
 import debug from 'debug'
 
 let content = `
@@ -34,10 +35,13 @@ type Options = {
   outDir?: string
 }
 
-export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plugin => {
+export const VitePluginDocument = ({
+  documentFilePath = '',
+  outDir = '.vite-document',
+}: Options = {}): Plugin => {
   const options: Required<Options> = {
     documentFilePath,
-    outDir: '.vite-document',
+    outDir,
   }
   return {
     name: NAME,
@@ -85,14 +89,14 @@ export const VitePluginDocument = ({ documentFilePath = '' }: Options = {}): Plu
       // in build mode, vite will try to load `index.html`
       if (id.endsWith('.html')) {
         await viteBuild({
+          logLevel: 'error',
           build: {
             outDir: options.outDir,
             ssr: options.documentFilePath,
           },
         })
-        const doc = await import(path.resolve(options.outDir, 'Document.js')).then(
-          (res) => res.default,
-        )
+        const distDocumentFilePath = resolveDistDocumentPath(options.outDir)!
+        const doc = await import(distDocumentFilePath).then((res) => res.default)
         content = docType(renderToStaticMarkup(doc()))
         return {
           code: content,

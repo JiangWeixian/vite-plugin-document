@@ -35,7 +35,7 @@
     "play": "pnpm --filter=./playground dev",
     "build": "rimraf dist && rollup -c --silent",
     "dev": "rollup -c -w --silent",
-    "test": "echo test",
+    "test": "vitest",
     "pretest": "pnpm run build",
     "release": "pnpm run build && np --no-cleanup --yolo --no-publish --any-branch",
     "ci:version": "pnpm changeset version",
@@ -69,7 +69,6 @@
     "@types/react-dom": "^18.0.6",
     "cz-emoji": "1.3.1",
     "eslint": "8.11.0",
-    "esrua": "0.2.1",
     "husky": "7.0.4",
     "lint-staged": "11.2.6",
     "prettier": "2.4.1",
@@ -88,7 +87,7 @@
     "typescript": "4.4.3",
     "typescript-transform-paths": "3.3.1",
     "vite": "^3.0.7",
-    "vitest": "0.10.0"
+    "vitest": "0.32.0"
   },
   "config": {
     "commitizen": {
