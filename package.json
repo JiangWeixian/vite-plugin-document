@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "license": "MIT",
   "homepage": "https://github.com/JiangWeixian/vite-plugin-document#readme",
+  "packageManager": "pnpm@7.33.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JiangWeixian/vite-plugin-document.git"
