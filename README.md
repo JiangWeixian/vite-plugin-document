@@ -15,11 +15,11 @@ pnpm i vite-plugin-document -D
 ```tsx
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { VitePluginDocument } from 'vite-plugin-document'
+import document from 'vite-plugin-document'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), VitePluginDocument()],
+  plugins: [react(), document()],
 })
 ```
 
@@ -48,7 +48,21 @@ const Document = () => {
 export default Document
 ```
 
-check [playground](/playground/) for more details
+check [playground](/examples/) for more details
+
+### solidjs
+
+```tsx
+import { defineConfig } from 'vite'
+import solid from 'vite-plugin-solid'
+import document from 'vite-plugin-document'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  // ssr: true is required
+  plugins: [solid({ ssr: true }), document({ solidjs: true })],
+})
+```
 
 ### inline scripts
 
@@ -75,6 +89,13 @@ In build mode, `vite-plugin-document` will bundle `<rootDir>/src/Document.tsx` i
 
 - type `string`
 - default `<rootDir>/.vite-document`
+
+### `solidjs`
+
+Current framework is `solidjs`, when `solidjs` is `undefined` automatic set to `true` if `vite-plugin-solid` is found in vite plugins list.
+
+- type `boolean`
+- default `<automatic detect>`
 
 ## development
 

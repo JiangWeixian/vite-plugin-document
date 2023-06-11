@@ -1,4 +1,3 @@
-import React from 'react'
 import { title } from './constants'
 
 const Document = () => {
