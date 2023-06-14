@@ -1,6 +1,6 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
+    "target": "ES2021",
     "module": "ESNext",
     "moduleResolution": "node",
     "importHelpers": true,
