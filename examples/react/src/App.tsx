@@ -1,6 +1,8 @@
+import './App.css'
+
 import React from 'react'
 import { BrowserRouter, useRoutes } from 'react-router-dom'
-import './App.css'
+
 import routes from '~react-pages'
 
 const RouterViewer = () => {

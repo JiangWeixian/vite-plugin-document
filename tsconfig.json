@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
+    "target": "ES2021",
+    "module": "ESNext",
     "moduleResolution": "node",
     "importHelpers": true,
     "esModuleInterop": true,
@@ -13,6 +13,8 @@
     "strict": true,
     "resolveJsonModule": true,
     "noImplicitReturns": true,
+    "declarationDir": "dist",
+    "emitDeclarationOnly": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "baseUrl": ".",
