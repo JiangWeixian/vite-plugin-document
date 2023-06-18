@@ -1,5 +1,16 @@
 # vite-plugin-document
 
+## 0.3.0
+
+### Minor Changes
+
+- 2c95a45: require node16
+
+### Patch Changes
+
+- 16bcb97: support solidjs
+- 16bcb97: resolve document.cjs|mjs and outDir not working
+
 ## 0.2.0
 
 ### Minor Changes
