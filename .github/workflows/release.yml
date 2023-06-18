@@ -19,9 +19,9 @@ jobs:
       - name: setup node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 16
       - name: install pnpm
-        run: npm i pnpm@latest -g
+        run: npm i pnpm@7.33.0 -g
       - name: install dependencies
         run: pnpm install --frozen-lockfile=false
       - name: create and publish versions
